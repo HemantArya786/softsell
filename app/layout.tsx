@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ChatWidget } from "@/components/chat/chat-widget";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,6 @@ export const metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  generator: "v0.dev",
 };
 
 export default function RootLayout({
@@ -51,6 +51,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {children}
           <Toaster />
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>

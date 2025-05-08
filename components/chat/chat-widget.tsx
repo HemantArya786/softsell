@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
-import { MessageCircle, X, Send, Loader2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { cn } from "@/lib/utils"
-import { ChatMessage } from "./chat-message"
-import { ExampleQuestions } from "./example-questions"
-import { useChat } from "./use-chat"
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
+import { ChatMessage } from "./chat-message";
+import { ExampleQuestions } from "./example-questions";
+import { useChat } from "./use-chat";
 
 export function ChatWidget() {
-  const [isOpen, setIsOpen] = useState(false)
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat()
+  const [isOpen, setIsOpen] = useState(false);
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat();
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed  bottom-4 right-5 z-50">
       <AnimatePresence>
         {isOpen ? (
           <motion.div
@@ -35,10 +36,16 @@ export function ChatWidget() {
                 </Avatar>
                 <div>
                   <h3 className="font-medium text-sm">SoftSell Assistant</h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Ask me anything about selling licenses</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    Ask me anything about selling licenses
+                  </p>
                 </div>
               </div>
-              <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(false)}
+              >
                 <X className="h-4 w-4" />
                 <span className="sr-only">Close</span>
               </Button>
@@ -54,20 +61,27 @@ export function ChatWidget() {
                     </AvatarFallback>
                   </Avatar>
                   <div className="space-y-2">
-                    <h3 className="font-medium">Welcome to SoftSell Assistant</h3>
+                    <h3 className="font-medium">
+                      Welcome to SoftSell Assistant
+                    </h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400">
-                      How can I help you with selling your software licenses today?
+                      How can I help you with selling your software licenses
+                      today?
                     </p>
                   </div>
                   <ExampleQuestions />
                 </div>
               ) : (
-                messages.map((message, index) => <ChatMessage key={index} message={message} />)
+                messages.map((message, index) => (
+                  <ChatMessage key={index} message={message} />
+                ))
               )}
               {isLoading && (
                 <div className="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="text-sm">SoftSell Assistant is typing...</span>
+                  <span className="text-sm">
+                    SoftSell Assistant is typing...
+                  </span>
                 </div>
               )}
             </div>
@@ -82,7 +96,11 @@ export function ChatWidget() {
                   className="flex-1"
                   disabled={isLoading}
                 />
-                <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
+                <Button
+                  type="submit"
+                  size="icon"
+                  disabled={isLoading || !input.trim()}
+                >
                   <Send className="h-4 w-4" />
                   <span className="sr-only">Send</span>
                 </Button>
@@ -101,11 +119,15 @@ export function ChatWidget() {
           "flex items-center justify-center w-14 h-14 rounded-full shadow-lg",
           "bg-slate-900 text-white hover:bg-slate-800",
           "dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200",
-          "focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2",
+          "focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
         )}
       >
-        {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {isOpen ? (
+          <X className="h-6 w-6" />
+        ) : (
+          <MessageCircle className="h-6 w-6" />
+        )}
       </motion.button>
     </div>
-  )
+  );
 }
